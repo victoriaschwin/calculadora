@@ -15,75 +15,75 @@
   <body>
     <div class="container">
       <div class="row">
-        <div class="col">
-          <span id="display" type="text"></span>
+        <div class="col displayCol">
+          <span id="display" type="text" class="display"></span>
         </div>
       </div>
       <div class="row">
-        <div class="col-4">
-          <button class="btn btn-secondary">Retr</button>
+        <div class="col-4" >
+          <button class="btn btn-secondary" id="medida" onclick="retro()">Retr</button>
         </div>
-        <div class="col-4">
-          <button class="btn btn-secondary">CE</button>
+        <div class="col-4" >
+          <button class="btn btn-secondary" id="medida" onclick="resetDisplay()">CE</button>
         </div>
-        <div class="col-4">
-          <button class="btn btn-secondary">C</button>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <button class="btn btn-secondary">7</button>
-        </div>
-        <div class="col">
-          <button class="btn btn-secondary">8</button>
-        </div>
-        <div class="col">
-          <button class="btn btn-secondary">9</button>
-        </div>
-        <div class="col">
-          <button class="btn btn-secondary">/</button>
+        <div class="col-4" >
+          <button class="btn btn-secondary" id="medida" onclick="reset()">C</button>
         </div>
       </div>
       <div class="row">
-        <div class="col">
-          <button class="btn btn-secondary">4</button>
+        <div class="col-3" id="width-final">
+          <button class="btn btn-secondary" onclick="pulsar(7)">7</button>
         </div>
-        <div class="col">
-          <button class="btn btn-secondary">5</button>
+        <div class="col-3" id="width-final">
+          <button class="btn btn-secondary" onclick="pulsar(8)">8</button>
         </div>
-        <div class="col">
-          <button class="btn btn-secondary">6</button>
+        <div class="col-3" id="width-final">
+          <button class="btn btn-secondary" onclick="pulsar(9)">9</button>
         </div>
-        <div class="col">
-          <button class="btn btn-secondary">*</button>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <button class="btn btn-secondary">1</button>
-        </div>
-        <div class="col">
-          <button class="btn btn-secondary">2</button>
-        </div>
-        <div class="col">
-          <button class="btn btn-secondary">3</button>
-        </div>
-        <div class="col">
-          <button class="btn btn-secondary">-</button>
+        <div class="col-3" id="width-final">
+          <button class="btn btn-secondary" onclick="operacion('dividir')">/</button>
         </div>
       </div>
       <div class="row">
-        <div class="col">
-          <button class="btn btn-secondary">0</button>
+        <div class="col-3" id="width-final">
+          <button class="btn btn-secondary" onclick="pulsar(4)" >4</button>
         </div>
-        <div class="col">
-          <button class="btn btn-secondary">.</button>
+        <div class="col-3" id="width-final">
+          <button class="btn btn-secondary" onclick="pulsar(5)">5</button>
         </div>
-        <div class="col">
-          <button class="btn btn-secondary">+</button>
+        <div class="col-3" id="width-final">
+          <button class="btn btn-secondary" onclick="pulsar(6)">6</button>
         </div>
-        <div class="col">
-          <button class="btn btn-secondary">=</button>
+        <div class="col-3" id="width-final">
+          <button class="btn btn-secondary" onclick="operacion('multiplicar')">*</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-3" id="width-final">
+          <button class="btn btn-secondary" onclick="pulsar(1)">1</button>
+        </div>
+        <div class="col-3" id="width-final">
+          <button class="btn btn-secondary" onclick="pulsar(2)">2</button>
+        </div>
+        <div class="col-3" id="width-final">
+          <button class="btn btn-secondary" onclick="pulsar(3)">3</button>
+        </div>
+        <div class="col-3" id="width-final">
+          <button class="btn btn-secondary" onclick="operacion('restar')">-</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-3" id="width-final">
+          <button class="btn btn-secondary" onclick="pulsar(0)">0</button>
+        </div>
+        <div class="col-3" id="width-final">
+          <button class="btn btn-secondary" onclick="decimal()">.</button>
+        </div>
+        <div class="col-3" id="width-final">
+          <button class="btn btn-secondary" onclick="operacion('sumar')">+</button>
+        </div>
+        <div class="col-3" id="width-final">
+          <button class="btn btn-secondary" onclick="resultado()">=</button>
         </div>
       </div>
     </div>
@@ -91,7 +91,87 @@
 
 
     <script>
-      
+      let display = document.getElementById('display');
+      let valueDisplay = 0;
+      let value1 = 0;
+      let value2 = 0;
+      let operacionMatematica = '';
+
+
+        function pulsar(num){
+          valueDisplay = valueDisplay*10 + num;
+          actualizarDisplay();
+
+        }
+
+        function operacion(matematica){
+            switch(matematica){
+              case 'sumar': 
+                    value1 = valueDisplay;
+                    operacionMatematica = 'sumar';
+                    valueDisplay = 0;
+                break;
+              case 'restar':
+                    value1 = valueDisplay;
+                    operacionMatematica = 'restar';
+                    valueDisplay = 0;
+                break;
+              case 'dividir':
+                    value1 = valueDisplay;
+                    operacionMatematica = 'dividir';
+                    valueDisplay = 0;
+                break;
+              case 'multiplicar':
+                    value1 = valueDisplay;
+                    operacionMatematica = 'multiplicar';
+                    valueDisplay = 0;
+                break;
+            }
+        }
+
+        function resultado(){
+            value2 = valueDisplay;
+            
+            if(operacionMatematica === 'sumar'){
+              valueDisplay = value1+value2;
+              actualizarDisplay();
+            } else if (operacionMatematica === 'restar'){
+              valueDisplay= value1 - value2;
+              actualizarDisplay();
+            } else if (operacionMatematica === 'dividir'){
+              valueDisplay = value1 / value2
+              actualizarDisplay();
+            }else{
+              valueDisplay = value1*value2;
+              actualizarDisplay();
+            }
+        }
+
+        function actualizarDisplay(){
+          display.innerText = valueDisplay;
+        }
+
+        function resetDisplay(){
+          valueDisplay = 0;
+          actualizarDisplay();
+        }
+
+        function reset(){
+          valueDisplay = 0;
+          value1 = 0;
+          value2 = 0;
+          operacionMatematica = '';
+          actualizarDisplay();
+        }
+
+        function retro(){
+          valueDisplay = valueDisplay ;
+          actualizarDisplay();
+        }
+
+        function decimal(){
+
+        }
     </script>
   </body>
 

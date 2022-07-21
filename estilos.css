@@ -5,12 +5,37 @@
 }
 
 .container{
- max-width: 30px;
- border: 1px solid black; 
+  width: 350px !important;
+  border: 1px solid black; 
+  border-radius: 15px;
   padding: 1rem;
-  margin: 
+  margin: 5px;
+  padding-right: 0;
+  
 }
 
-.btn{
+.btn.btn-secondary{
   margin: 0.2rem;
+  padding: 0.8rem;
+  width: 130%;
+  min-width: 0;
+}
+
+.display{
+  border: 1px solid grey;
+  border-radius: 10px;
+  min-width: 50%;
+}
+
+#medida{
+  width: 104%;
+}
+
+#width-final{
+  width:24%;
+}
+
+.displayCol{
+  margin: 0 0.5rem 0.2rem 1rem;
+  background-color: blueviolet;
 }
